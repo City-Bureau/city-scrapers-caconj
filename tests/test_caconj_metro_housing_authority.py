@@ -32,8 +32,10 @@ def test_count():
 
 def test_title():
     assert parsed_items[0]["title"] == "Board of Commissioners Meeting - RESCHEDULED"
-    assert parsed_items[1]["title"] == "Board of Commissioners meeting - "\
+    assert (
+        parsed_items[1]["title"] == "Board of Commissioners meeting - "
         "Rescheduled from August 20"
+    )
     assert parsed_items[2]["title"] == "Board of Commissioners Meeting"
     assert parsed_items[5]["title"] == "Annual & Board of Commissioners Meetings"
 
@@ -57,7 +59,10 @@ def test_time_notes():
 
 
 def test_id():
-    assert parsed_items[0]["id"] == "caconj_metro_housing_authority/202408201800/x/board_of_commissioners_meeting"  # noqa
+    assert (
+        parsed_items[0]["id"] == "caconj_metro_housing_authority/202408201800/x/"
+        "board_of_commissioners_meeting"
+    )
 
 
 def test_status():
@@ -72,41 +77,45 @@ def test_status():
 def test_location():
     assert parsed_items[0]["location"] == {
         "name": "CMHA Boardroom",
-        "address": "1635 Western Avenue (45214)"
+        "address": "1635 Western Avenue (45214)",
     }
     assert parsed_items[1]["location"] == {
         "name": "CMHA Boardroom",
-        "address": "1635 Western Avenue (45214)"
+        "address": "1635 Western Avenue (45214)",
     }
     assert parsed_items[2]["location"] == {
         "name": "CMHA Boardroom",
-        "address": "1635 Western Avenue (45214)"
+        "address": "1635 Western Avenue (45214)",
     }
     assert parsed_items[3]["location"] == {
         "name": "West Union Square",
-        "address": "2942 Banning Road, Cincinnati, OH 45239"
+        "address": "2942 Banning Road, Cincinnati, OH 45239",
     }
     assert parsed_items[4]["location"] == {
         "name": "The Reserve on South Martin",
-        "address": "7363 Martin Street, Cincinnati, OH 45231 (Mt. Healthy)"
+        "address": "7363 Martin Street, Cincinnati, OH 45231 (Mt. Healthy)",
     }
     assert parsed_items[5]["location"] == {
         "name": "CMHA Boardroom",
-        "address": "1635 Western Avenue (45214)"
+        "address": "1635 Western Avenue (45214)",
     }
 
 
 def test_source():
-    assert parsed_items[0]["source"] == "https://cintimha.com/wp-admin/admin-ajax.php"\
-        "?action=get_calendar_events&noheader=true&start_date=1719938796&end_date="\
+    assert (
+        parsed_items[0]["source"] == "https://cintimha.com/wp-admin/admin-ajax.php"
+        "?action=get_calendar_events&noheader=true&start_date=1719938796&end_date="
         "1751475199&show_expired=true&event_category_id=executive-office-1466450825"
+    )
 
 
 def test_links():
-    assert parsed_items[0]["links"] == [{
-        "title": "Event Link",
-        "href": "https://cintimha.com/events/board-of-commissioners-meeting-63/"
-    }]
+    assert parsed_items[0]["links"] == [
+        {
+            "title": "Event Link",
+            "href": "https://cintimha.com/events/board-of-commissioners-meeting-63/",
+        }
+    ]
 
 
 def test_classification():
