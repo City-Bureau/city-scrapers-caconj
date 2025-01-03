@@ -1,4 +1,3 @@
-import textwrap
 from datetime import datetime
 from os.path import dirname, join
 
@@ -13,7 +12,9 @@ from city_scrapers.spiders.caconj_metro_housing_authority import (
 
 test_response = file_response(
     join(dirname(__file__), "files", "caconj_metro_housing_authority.html"),
-    url="https://cintimha.com/wp-admin/admin-ajax.php?action=get_calendar_events&noheader=true&start_date=1719938796&end_date=1751475199&show_expired=true&event_category_id=executive-office-1466450825",
+    url="https://cintimha.com/wp-admin/admin-ajax.php?action=get_calendar_events"
+    "&noheader=true&start_date=1719938796&end_date=1751475199&show_expired=true"
+    "&event_category_id=executive-office-1466450825",
 )
 spider = CaconjMetroHousingAuthoritySpider()
 
@@ -24,13 +25,15 @@ parsed_items = [item for item in spider.parse(test_response)]
 
 freezer.stop()
 
+
 def test_count():
     assert len(parsed_items) == 6
 
 
 def test_title():
     assert parsed_items[0]["title"] == "Board of Commissioners Meeting - RESCHEDULED"
-    assert parsed_items[1]["title"] == "Board of Commissioners meeting - Rescheduled from August 20"
+    assert parsed_items[1]["title"] == "Board of Commissioners meeting - "\
+        "Rescheduled from August 20"
     assert parsed_items[2]["title"] == "Board of Commissioners Meeting"
     assert parsed_items[5]["title"] == "Annual & Board of Commissioners Meetings"
 
@@ -54,7 +57,7 @@ def test_time_notes():
 
 
 def test_id():
-    assert parsed_items[0]["id"] == "caconj_metro_housing_authority/202408201800/x/board_of_commissioners_meeting"
+    assert parsed_items[0]["id"] == "caconj_metro_housing_authority/202408201800/x/board_of_commissioners_meeting"  # noqa
 
 
 def test_status():
@@ -67,12 +70,6 @@ def test_status():
 
 
 def test_location():
-    # annual meeting
-    # will begin prior to the Board of Commissioners Meeting in the CMHA Boardroom located at 1635 Western Avenue (45214) beginning at 5:45pm
-    # other meeting
-    # will take place at the The Reserve on South Martin, 7363 Martin Street, Cincinnati, OH 45231 (Mt. Healthy) beginning at 6pm.
-    # will take place in the West Union Square, 2942 Banning Road, Cincinnati, OH 45239 beginning at 6pm.
-    # will take place in the West Union Square, 2942 Banning Road, Cincinnati, OH 45239 beginning at 6pm.
     assert parsed_items[0]["location"] == {
         "name": "CMHA Boardroom",
         "address": "1635 Western Avenue (45214)"
@@ -100,7 +97,9 @@ def test_location():
 
 
 def test_source():
-    assert parsed_items[0]["source"] == "https://cintimha.com/wp-admin/admin-ajax.php?action=get_calendar_events&noheader=true&start_date=1719938796&end_date=1751475199&show_expired=true&event_category_id=executive-office-1466450825"
+    assert parsed_items[0]["source"] == "https://cintimha.com/wp-admin/admin-ajax.php"\
+        "?action=get_calendar_events&noheader=true&start_date=1719938796&end_date="\
+        "1751475199&show_expired=true&event_category_id=executive-office-1466450825"
 
 
 def test_links():

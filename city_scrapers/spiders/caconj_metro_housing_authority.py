@@ -13,7 +13,6 @@ class CaconjMetroHousingAuthoritySpider(CityScrapersSpider):
     name = "caconj_metro_housing_authority"
     agency = "Cincinnati Metro Housing Authority"
     timezone = "America/Chicago"
-    # start_urls = ["https://cintimha.com/wp-admin/admin-ajax.php?action=get_calendar_events&noheader=true&start_date=1719938796&end_date=1751475199&show_expired=true&event_category_id=executive-office-1466450825"]
 
     def start_requests(self):
         # generate start and endtime for api request
@@ -23,7 +22,9 @@ class CaconjMetroHousingAuthoritySpider(CityScrapersSpider):
         start_int = start_date.strftime('%s')
         end_int = end_date.strftime('%s')
         # generate url with stand & end times
-        url = f"https://cintimha.com/wp-admin/admin-ajax.php?action=get_calendar_events&noheader=true&start_date={start_int}&end_date={end_int}&show_expired=true&event_category_id=executive-office-1466450825"
+        url = "https://cintimha.com/wp-admin/admin-ajax.php?action=get_calendar_events"
+        f"&noheader=true&start_date={start_int}&end_date={end_int}"
+        "&show_expired=true&event_category_id=executive-office-1466450825"
 
         yield scrapy.Request(url=url, callback=self.parse)
 
