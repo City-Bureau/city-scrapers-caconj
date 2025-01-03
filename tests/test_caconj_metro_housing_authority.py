@@ -1,13 +1,15 @@
+import textwrap
 from datetime import datetime
 from os.path import dirname, join
 
 import pytest
-from city_scrapers_core.constants import COMMISSION, CANCELLED, PASSED
+from city_scrapers_core.constants import CANCELLED, COMMISSION, PASSED
 from city_scrapers_core.utils import file_response
 from freezegun import freeze_time
 
-from city_scrapers.spiders.caconj_metro_housing_authority import CaconjMetroHousingAuthoritySpider
-import textwrap
+from city_scrapers.spiders.caconj_metro_housing_authority import (
+    CaconjMetroHousingAuthoritySpider,
+)
 
 test_response = file_response(
     join(dirname(__file__), "files", "caconj_metro_housing_authority.html"),

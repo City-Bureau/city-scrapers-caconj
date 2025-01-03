@@ -1,11 +1,12 @@
+import re
+from datetime import datetime
+
 import scrapy
 from city_scrapers_core.constants import COMMISSION
 from city_scrapers_core.items import Meeting
 from city_scrapers_core.spiders import CityScrapersSpider
-from datetime import datetime
-from dateutil.relativedelta import relativedelta
 from dateutil.parser import parse
-import re
+from dateutil.relativedelta import relativedelta
 
 
 class CaconjMetroHousingAuthoritySpider(CityScrapersSpider):
