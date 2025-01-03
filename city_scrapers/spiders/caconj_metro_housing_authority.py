@@ -12,7 +12,7 @@ from dateutil.relativedelta import relativedelta
 class CaconjMetroHousingAuthoritySpider(CityScrapersSpider):
     name = "caconj_metro_housing_authority"
     agency = "Cincinnati Metro Housing Authority"
-    timezone = "America/Chicago"
+    timezone = "America/New_York"
 
     def start_requests(self):
         # generate start and endtime for api request
