@@ -102,11 +102,7 @@ def test_location():
 
 
 def test_source():
-    assert (
-        parsed_items[0]["source"] == "https://cintimha.com/wp-admin/admin-ajax.php"
-        "?action=get_calendar_events&noheader=true&start_date=1719938796&end_date="
-        "1751475199&show_expired=true&event_category_id=executive-office-1466450825"
-    )
+    assert parsed_items[0]["source"] == "https://cintimha.com/calendar/"
 
 
 def test_links():

@@ -93,5 +93,8 @@ class CaconjMetroHousingAuthoritySpider(CityScrapersSpider):
         return [{"title": "Event Link", "href": item["url"]}]
 
     def _parse_source(self, response):
-        """Parse or generate source."""
-        return response.url
+        """
+        Generate source.
+        APIs are not user friendly. Return calendar URL which is user friendly.
+        """
+        return "https://cintimha.com/calendar/"
