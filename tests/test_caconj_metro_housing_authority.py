@@ -77,15 +77,15 @@ def test_status():
 def test_location():
     assert parsed_items[0]["location"] == {
         "name": "CMHA Boardroom",
-        "address": "1635 Western Avenue (45214)",
+        "address": "1635 Western Ave, Cincinnati, OH 45214",
     }
     assert parsed_items[1]["location"] == {
         "name": "CMHA Boardroom",
-        "address": "1635 Western Avenue (45214)",
+        "address": "1635 Western Ave, Cincinnati, OH 45214",
     }
     assert parsed_items[2]["location"] == {
         "name": "CMHA Boardroom",
-        "address": "1635 Western Avenue (45214)",
+        "address": "1635 Western Ave, Cincinnati, OH 45214",
     }
     assert parsed_items[3]["location"] == {
         "name": "West Union Square",
@@ -97,7 +97,7 @@ def test_location():
     }
     assert parsed_items[5]["location"] == {
         "name": "CMHA Boardroom",
-        "address": "1635 Western Avenue (45214)",
+        "address": "1635 Western Ave, Cincinnati, OH 45214",
     }
 
 

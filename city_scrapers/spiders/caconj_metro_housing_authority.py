@@ -21,10 +21,12 @@ class CaconjMetroHousingAuthoritySpider(CityScrapersSpider):
         end_date = current_date + relativedelta(months=6)
         start_int = start_date.strftime("%s")
         end_int = end_date.strftime("%s")
-        # generate url with stand & end times
-        url = "https://cintimha.com/wp-admin/admin-ajax.php?action=get_calendar_events"
-        f"&noheader=true&start_date={start_int}&end_date={end_int}"
-        "&show_expired=true&event_category_id=executive-office-1466450825"
+        # generate url with start & end times
+        url = (
+            "https://cintimha.com/wp-admin/admin-ajax.php?action=get_calendar_events"
+            f"&noheader=true&start_date={start_int}&end_date={end_int}"
+            "&show_expired=true&event_category_id=executive-office-1466450825"
+        )
 
         yield scrapy.Request(url=url, callback=self.parse)
 
@@ -70,22 +72,22 @@ class CaconjMetroHousingAuthoritySpider(CityScrapersSpider):
         """Parse or generate location."""
         location = {"name": "", "address": ""}
         text = item["description"]
-        regex = r"(at)?.+\s(at|the)\s?(.+)\sbeginning"
-        match = re.search(regex, text)
-        if match:
-            address = match.group(3)
-            location["address"] = address
-            if "1635 Western Avenue" in address:
-                # set location name to boardroom if certain address found
-                location["name"] = "CMHA Boardroom"
-            else:
+
+        if "1635 Western Avenue" in text:
+            location["name"] = "CMHA Boardroom"
+            location["address"] = "1635 Western Ave, Cincinnati, OH 45214"
+        else:
+            regex = r".+\s(at|the)\s?(.+)\sbeginning"
+            match = re.search(regex, text)
+            if match:
                 # split string up between name and address
                 # ex: West Union Square, 2942 Banning Road, Cincinnati, OH 45239
                 # name: West Union Square
                 # address: 2942 Banning Road, Cincinnati, OH 45239
-                parts = address.split(", ")
+                parts = match.group(2).split(", ")
                 location["name"] = parts[0]
                 location["address"] = ", ".join(parts[1:])
+
         return location
 
     def _parse_links(self, item):
