@@ -40,7 +40,7 @@ class CaconjMetroHousingAuthoritySpider(CityScrapersSpider):
         for item in data:
             meeting = Meeting(
                 title=item["title"],
-                description="",
+                description=self._parse_description(item),
                 classification=COMMISSION,
                 start=self._parse_start(item),
                 end=self._parse_end(item),
@@ -55,6 +55,12 @@ class CaconjMetroHousingAuthoritySpider(CityScrapersSpider):
             meeting["id"] = self._get_id(meeting)
 
             yield meeting
+
+    def _parse_description(self, item):
+        """Parse description."""
+        raw = item["description"]
+        cleaned = raw.replace("\n", "")
+        return cleaned
 
     def _parse_start(self, item):
         """Parse start datetime as a naive datetime object."""

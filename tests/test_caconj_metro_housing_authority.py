@@ -41,7 +41,14 @@ def test_title():
 
 
 def test_description():
-    assert parsed_items[0]["description"] == ""
+    assert parsed_items[0]["description"] == (
+        "<p><strong>CANCELLED! Rescheduled for Thursday, August 22. 2024 at 3:30 p.m. "
+        "to 5:30 p.m.</strong></p><p>The Cincinnati Metropolitan Housing Authority "
+        "Board of Commissioners Meeting will take place in the CMHA Boardroom located "
+        "at 1635 Western Avenue (45214) beginning at 6pm.</p><p><strong><a "
+        'href="https://cintimha.com/about/board-of-commissioners/">Click here</a></str'
+        "ong> for information on Requests to Speak and to see the meeting agenda.</p>"
+    )
 
 
 def test_start():
